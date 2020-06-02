@@ -47,8 +47,6 @@ class MyKitty extends Module
             Shop::setContext(Shop::CONTEXT_ALL);
         }
 
-        $this->registerHook('actionValidateOrder');
-
         $languages = Language::getLanguages(false);
         foreach ($languages as $language) {
             if (!parent::install() || !$this->registerHook('displayLeftColumn') || !$this->registerHook('header') || !Configuration::updateValue('mykitty_title_'.$language['id_lang'], 'My kitty') || !Configuration::updateValue('mykitty_value_'.$language['id_lang'], '0.50')) {
@@ -71,10 +69,6 @@ class MyKitty extends Module
         }
     }
 
-    public function hookActionValidateOrder(array $params)
-    {
-        $this->_clearCache('*');
-    }
 
     public function getContent()
     {
