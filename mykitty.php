@@ -216,7 +216,7 @@ class MyKitty extends Module
 
         $query = 'SELECT COUNT(*) FROM ' . _DB_PREFIX_ . 'orders o 
         LEFT JOIN ' . _DB_PREFIX_ . 'order_state os ON (o.current_state = os.id_order_state) 
-        WHERE os.paid = 1 AND MONTH(o.date_add) = MONTH(NOW()) AND YEAR(o.date_add) = YEAR(NOW())';
+        WHERE os.id_order_state IN (2,3,4,5,20,21) AND MONTH(o.date_add) = MONTH(NOW()) AND YEAR(o.date_add) = YEAR(NOW())';
 
         $nb_orders = Db::getInstance()->getValue($query);
         
